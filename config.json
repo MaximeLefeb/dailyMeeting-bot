@@ -1,0 +1,11 @@
+{
+  "clientId": "1123517039022182440",
+  "token": "MTEyMzUxNzAzOTAyMjE4MjQ0MA.Gg6-mw.J3qZAHo_0GirHA3ZDu2SrZsRJwiRJac2zkQHZo",
+  "meetingRoomId": "1133497593943568424",
+  "guildId": "1123596526166474842",
+  "host": "127.0.0.1",
+  "user": "root",
+  "port": "3306",
+  "password": "",
+  "database": "dailymeet_bot"
+}

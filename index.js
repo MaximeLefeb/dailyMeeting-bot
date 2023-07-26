@@ -1,3 +1,4 @@
+require('./commands.js');
 const cron = require("cron");
 const mysql = require('mysql');
 const { Client, Intents } = require('discord.js');

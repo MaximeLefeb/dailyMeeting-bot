@@ -1,0 +1,63 @@
+{
+  "name": "dailymeeting-bot",
+  "version": "1.0.0",
+  "description": "Code API & Bot discord",
+  "main": "index.js",
+  "dependencies": {
+    "@discordjs/rest": "^1.7.1",
+    "asynckit": "^0.4.0",
+    "bignumber.js": "^9.0.0",
+    "cjopus": "^0.0.4",
+    "combined-stream": "^1.0.8",
+    "core-util-is": "^1.0.3",
+    "cron": "^2.4.0",
+    "delayed-stream": "^1.0.0",
+    "discord-api-types": "^0.27.3",
+    "discord.io": "^2.5.3",
+    "discord.js": "^13.16.0",
+    "fast-deep-equal": "^3.1.3",
+    "form-data": "^4.0.0",
+    "inherits": "^2.0.4",
+    "isarray": "^1.0.0",
+    "lodash": "^4.17.21",
+    "luxon": "^3.3.0",
+    "mime-db": "^1.52.0",
+    "mime-types": "^2.1.35",
+    "mysql": "^2.18.1",
+    "node-fetch": "^2.6.12",
+    "options": "^0.0.6",
+    "process-nextick-args": "^2.0.1",
+    "readable-stream": "^2.3.7",
+    "safe-buffer": "^5.1.2",
+    "sqlstring": "^2.3.1",
+    "string_decoder": "^1.1.1",
+    "tr46": "^0.0.3",
+    "ts-mixer": "^6.0.3",
+    "tslib": "^2.6.1",
+    "tweetnacl": "^0.14.5",
+    "ultron": "^1.0.2",
+    "util-deprecate": "^1.0.2",
+    "webidl-conversions": "^3.0.1",
+    "whatwg-url": "^5.0.0",
+    "ws": "^1.1.5",
+    "zod": "^3.21.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaximeLefeb/dailyMeeting-bot.git"
+  },
+  "keywords": [
+    "Discord",
+    "Slack",
+    "bot"
+  ],
+  "author": "Groupe 3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaximeLefeb/dailyMeeting-bot/issues"
+  },
+  "homepage": "https://github.com/MaximeLefeb/dailyMeeting-bot#readme"
+}
