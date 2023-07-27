@@ -1,0 +1,10 @@
+{
+    "token": "xoxb-5649189266624-5639437621205-Sdz9f1etoFBPmR4v8fVifZbk",
+    "signingSecret": "6d132df7b91b6b1dc2219dbe1a0103a8",
+    "channelId": "C05JAGCTVAR",
+    "host": "127.0.0.1",
+    "user": "root",
+    "port": "3306",
+    "password": "",
+    "database": "dailymeet_bot"
+  }

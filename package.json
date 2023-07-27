@@ -5,6 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/rest": "^1.7.1",
+    "@slack/bolt": "^3.13.2",
+    "@slack/web-api": "^6.8.1",
     "asynckit": "^0.4.0",
     "bignumber.js": "^9.0.0",
     "cjopus": "^0.0.4",
@@ -25,6 +27,7 @@
     "mime-types": "^2.1.35",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.12",
+    "node-schedule": "^2.1.1",
     "options": "^0.0.6",
     "process-nextick-args": "^2.0.1",
     "readable-stream": "^2.3.7",

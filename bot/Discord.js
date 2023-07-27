@@ -1,8 +1,9 @@
-require('./commands.js');
+const path = require('path');
 const cron = require("cron");
 const mysql = require('mysql');
 const { Client, Intents } = require('discord.js');
-const { token, host, user, password, database, port, meetingRoomId } = require('./config.json');
+const { token, host, user, password, database, port, meetingRoomId } = require(path.resolve(__dirname, '../config/discordConfig.json'));
+require(path.resolve(__dirname, '../commandeBot/Commands.js'));
 
 let step = null;
 let ids_bots = [
