@@ -1,6 +1,7 @@
 {
   "clientId": "",
   "token": "",
+  "meetingTextRoomId": "",
   "meetingRoomId": "",
   "guildId": "",
   "host": "127.0.0.1",

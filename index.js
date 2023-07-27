@@ -1,8 +1,9 @@
 require('./commands.js');
-const cron = require("cron");
+const now   = new Date();
+const cron  = require("cron");
 const mysql = require('mysql');
 const { Client, Intents } = require('discord.js');
-const { token, host, user, password, database, port, meetingRoomId } = require('./config.json');
+const { token, host, user, password, database, port, meetingRoomId, meetingTextRoomId } = require('./config.json');
 
 let step = null;
 let ids_bots = [
@@ -23,6 +24,36 @@ let con = mysql.createConnection({
     password: password,
     database: database
 });
+
+/**
+ * Fonction pour faire le recap sur le serveur de meeting textuel
+ * 
+ * @param {Date} now 
+ * 
+ * @return {Void}
+ */
+function summary(now) {
+    const date    = now.toISOString().slice(0, 10).replace('T', ' ');
+    const channel = client.channels.cache.find(channel => channel.id === meetingTextRoomId);
+
+    con.query(`SELECT * FROM response WHERE time LIKE '%${date}%'`, function (err, result, fields) {
+        if (err) throw err;
+
+        var message   = '';
+
+        Object.values(result).forEach((element) => {
+            console.log(element);
+
+            message += `<@${element.id_user}> à déclarer : ${element.response_obj} ! \n`;
+        });
+
+        channel.send(`
+            <@everyone> Oyez 📢 ! Oyez 📢 ! Voici le recap du meeting d'aujourd'hui : \n
+
+            ${message}
+        ` );
+    });
+}
 
 /**
  * Direct message, gestion des étapes du daily meeting
@@ -56,7 +87,8 @@ function tutor_step(msg, invit = null) {
             return;
         }
 
-        const sql = `INSERT INTO response (id_user, name_user, response_obj, time, step) VALUES ("${msg.author.id}", "${msg.author.username}", "${msg.content}", "","${step}")`;
+        const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
+        const sql       = `INSERT INTO response (id_user, name_user, response_obj, time, step) VALUES ("${msg.author.id}", "${msg.author.username}", "${msg.content}", "${timestamp}", "${step}")`;
 
         if (step !== 0) step++;
 
@@ -92,7 +124,7 @@ client.once('ready', () => {
     });
 
     console.log('Dailymeet Bot ready ✔️ !');
-})
+});
 
 //* Bot DM Interaction
 client.on("messageCreate", async message => {
@@ -106,14 +138,14 @@ client.on("messageCreate", async message => {
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return; //* If not recognized as command
 
-    const channel = client.channels.cache.find(channel => channel.id === `1123596527026323518`); //* Id channel "#général"
+    const channel = client.channels.cache.find(channel => channel.id === meetingTextRoomId); //* Id channel "#général"
     const { commandName } = interaction;
 
     switch (commandName) {
         case 'meetup':
             interaction.reply(`<@${interaction.user.id}> Planifie un daily meeting !`);
 
-            step = 1;
+            step  = 1;
 
             //! For test every minutes 00 * * * * * || 00 05 09 * * 1-5 for Monday - Friday 09h05
             let message = new cron.CronJob('00 * * * * *', () => { //* Format [Seconde: 0-59, Minutes: 0-59, Hours: 0-23, Day of Month: 1-31, Month: 0-11, Day of week: 0-6 (Sun-Sat)]
@@ -145,7 +177,12 @@ client.on('interactionCreate', async interaction => {
                 });
             });
 
+            let recap = new cron.CronJob('59 * * * * *', () => {
+                summary(now);
+            });
+
             message.start(); //* Launch daily task
+            recap.start(); //* Launch recap
         break;
 
         case 'cheers':
